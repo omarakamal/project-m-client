@@ -20,7 +20,7 @@ function AddProject(props) {
         // req.body to .create() method when creating a new movie in '/api/movies' POST route
         uploadData.append("imageUrl", e.target.files[0]);
      
-        axios.post('http://localhost:5005/api/upload',uploadData)
+        axios.post('https://project-management-server-0gm7.onrender.com/api/upload',uploadData)
           .then(response => {
              console.log("response is: ", response.data.fileUrl);
             // response carries "fileUrl" which we can use to update the state
@@ -34,7 +34,7 @@ function AddProject(props) {
         e.preventDefault()
         const token = localStorage.getItem('authToken')
         const newProject = {title,description,imageUrl}
-        axios.post('http://localhost:5005/api/projects',newProject,{headers:{Authorization:`Bearer ${token}`}})
+        axios.post('https://project-management-server-0gm7.onrender.com/api/projects',newProject,{headers:{Authorization:`Bearer ${token}`}})
         .then(()=>{
             alert("Project successfully Created")
             props.getProjects()

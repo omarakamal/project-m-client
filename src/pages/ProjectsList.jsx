@@ -7,7 +7,6 @@ import projectsService from '../services/ProjectService'
 function ProjectsList() {
     const [projects, setProjects] = useState([])
 
-    console.log(process.env.REACT_APP_MARCOS)
 
     function getProjects() {
         const token = localStorage.getItem('authToken')

@@ -24,7 +24,7 @@ function EditProject() {
 
     
     function deleteProject(){
-        axios.delete(`http://localhost:5005/api/projects/${id}`)
+        axios.delete(`https://project-management-server-0gm7.onrender.com/api/projects/${id}`)
         .then(response=>{
             navigate('/projects')
         })

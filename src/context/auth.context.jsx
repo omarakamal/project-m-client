@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const API_URL = "http://localhost:5005";
+const API_URL = "https://project-management-server-0gm7.onrender.com";
  
 const AuthContext = React.createContext();
  
