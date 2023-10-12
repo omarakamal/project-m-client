@@ -35,7 +35,7 @@ function EditProject() {
     }
 
     useEffect(()=>{
-        axios.get(`http://localhost:5005/api/projects/${id}`)
+        axios.get(`https://project-management-server-0gm7.onrender.com/api/projects/${id}`)
         .then(response=>{
             console.log(response.data)
             setTitle(response.data.title)
