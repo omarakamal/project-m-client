@@ -2,19 +2,23 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { Link } from 'react-router-dom'
 import AddProject from './AddProject'
+import projectsService from '../services/ProjectService'
 
 function ProjectsList() {
     const [projects, setProjects] = useState([])
 
+    console.log(process.env.REACT_APP_MARCOS)
+
     function getProjects() {
+        const token = localStorage.getItem('authToken')
         //fetch the data for all projects when the component first loads
-        axios.get('http://localhost:5005/api/projects')
-            .then((response) => {
-                setProjects(response.data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
+        projectsService.getAllProjects()
+        .then((response) => {
+            setProjects(response.data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
     useEffect(() => {
@@ -22,7 +26,7 @@ function ProjectsList() {
     }, [])
 
     function deleteProject(id){
-        axios.delete(`http://localhost:5005/api/projects/${id}`)
+        projectsService.deleteProject(id)
         .then(()=>{
             getProjects()
         })

@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import projectsService from '../services/ProjectService'
 
 /* 
 1. Fetching the data for 1 project
@@ -12,7 +13,7 @@ function ProjectDetailsPage() {
     const navigate = useNavigate()
 
     function deleteProject(){
-        axios.delete(`http://localhost:5005/api/projects/${id}`)
+        projectsService.deleteProject(id)
         .then(()=>{
             navigate('/projects')
         }).
@@ -22,7 +23,7 @@ function ProjectDetailsPage() {
     }
 
     useEffect(()=>{
-        axios.get(`http://localhost:5005/api/projects/${id}`)
+        projectsService.getProject(id)
         .then((response)=>{
             console.log(response.data)
             setProject(response.data)
@@ -41,6 +42,7 @@ function ProjectDetailsPage() {
         {/* After we set the state to the 1 project */}
         {project && (
             <>
+            {/* <img src={project.image} alt="" /> */}
             <h1>{project.title}</h1>
             <p>{project.description}</p>
             </>
